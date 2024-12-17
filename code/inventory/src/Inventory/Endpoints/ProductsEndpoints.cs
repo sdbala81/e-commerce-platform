@@ -10,10 +10,10 @@ public static class ProductEndpoints
         var group = app.MapGroup("/products");
 
         group.MapGet("/", async (ApplicationDbContext db) =>
-            await db.Products.Include(p => p.Category).ToListAsync());
+            await db.Products.ToListAsync());
 
-        group.MapGet("/{id:int}", async (int id, ApplicationDbContext db) =>
-            await db.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id) is Product product
+        group.MapGet("/{productId:Guid}", async (Guid productId, ApplicationDbContext db) =>
+            await db.Products.FirstOrDefaultAsync(p => p.Id == productId) is { } product
                 ? Results.Ok(product)
                 : Results.NotFound());
 
@@ -32,7 +32,6 @@ public static class ProductEndpoints
             product.Name = updatedProduct.Name;
             product.Description = updatedProduct.Description;
             product.Price = updatedProduct.Price;
-            product.CategoryId = updatedProduct.CategoryId;
 
             await db.SaveChangesAsync();
             return Results.NoContent();

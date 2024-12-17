@@ -9,10 +9,16 @@ public static class ProductCategoryEndpoints
         var group = app.MapGroup("/categories");
 
         group.MapGet("/", async (ApplicationDbContext db) =>
-            await db.ProductCategories.Include(c => c.Products).ToListAsync());
+            await db.ProductCategories.ToListAsync());
 
         group.MapGet("/{id:int}", async (int id, ApplicationDbContext db) =>
-            await db.ProductCategories.Include(c => c.Products).FirstOrDefaultAsync(c => c.Id == id) is { } category
+            await db.ProductCategories.FirstOrDefaultAsync(c => c.Id == id) is { } category
+                ? Results.Ok(category)
+                : Results.NotFound());
+
+        group.MapGet("/{id:int}/products", async (int id, ApplicationDbContext db) =>
+            await db.ProductCategories.Include(productCategory => productCategory.Products)
+                .FirstOrDefaultAsync(productCategory => productCategory.Id == id) is { } category
                 ? Results.Ok(category)
                 : Results.NotFound());
 

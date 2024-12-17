@@ -5,7 +5,7 @@ GET {{inventory_service_HostAddress}}/products
 Accept: application/json
 
 ### 2. Get Product by ID (Example: ID = 1)
-GET {{inventory_service_HostAddress}}/products/1
+GET {{inventory_service_HostAddress}}/products/ea7b656a-9796-4a11-a403-f2b48283c328
 Accept: application/json
 
 ### 3. Create a new Product
@@ -39,4 +39,12 @@ DELETE {{inventory_service_HostAddress}}/products/2
 GET {{inventory_service_HostAddress}}/categories
 Accept: application/json
 
-###
+### 7. Get all Product Categories by Id
+GET {{inventory_service_HostAddress}}/categories/1
+Accept: application/json
+
+
+### 7. Get all the products in a category
+GET {{inventory_service_HostAddress}}/categories/1/products
+Accept: application/json
+
