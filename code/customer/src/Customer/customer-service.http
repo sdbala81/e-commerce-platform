@@ -1,0 +1,37 @@
+@customer_service_HostAddress = http://localhost:7000
+
+### 1. Get all customers
+GET {{customer_service_HostAddress}}/customers
+Accept: application/json
+
+### 2. Get customer by ID (Example: ID = 1)
+GET {{customer_service_HostAddress}}/customers/1
+Accept: application/json
+
+### 3. Create a new customer
+POST {{customer_service_HostAddress}}/customers
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Johnson",
+  "email": "alice.johnson@example.com",
+  "phoneNumber": "5551234567"
+}
+
+### 4. Update an existing customer (Example: ID = 1)
+PUT {{customer_service_HostAddress}}/customers/1
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe Updated",
+  "email": "john.doe_updated@example.com",
+  "phoneNumber": "5559876543"
+}
+
+### 5. Delete a customer (Example: ID = 2)
+DELETE {{customer_service_HostAddress}}/customers/2
+
+
+###

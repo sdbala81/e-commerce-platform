@@ -1,0 +1,42 @@
+@inventory_service_HostAddress = http://localhost:8000
+
+### 1. Get all Products
+GET {{inventory_service_HostAddress}}/products
+Accept: application/json
+
+### 2. Get Product by ID (Example: ID = 1)
+GET {{inventory_service_HostAddress}}/products/1
+Accept: application/json
+
+### 3. Create a new Product
+POST {{inventory_service_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "name": "Tablet",
+  "description": "10-inch tablet with 64GB storage",
+  "price": 299.99,
+  "categoryId": 1
+}
+
+### 4. Update an existing Product (Example: ID = 1)
+PUT {{inventory_service_HostAddress}}/products/1
+Content-Type: application/json
+
+{
+  "name": "Smartphone - Updated",
+  "description": "Updated description for smartphone",
+  "price": 749.99,
+  "categoryId": 1
+}
+
+### 5. Delete a Product (Example: ID = 2)
+DELETE {{inventory_service_HostAddress}}/products/2
+
+---
+
+### 6. Get all Product Categories
+GET {{inventory_service_HostAddress}}/categories
+Accept: application/json
+
+###
