@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Customer.Models;
+﻿namespace Ecommerce.Customer.WebApi.Models;
 
 public class Customer
 {

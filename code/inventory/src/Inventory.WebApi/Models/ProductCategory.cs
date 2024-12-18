@@ -1,4 +1,4 @@
-namespace Ecommerce.Inventory.Models;
+namespace Ecommerce.Inventory.WebApi.Models;
 
 public class ProductCategory
 {

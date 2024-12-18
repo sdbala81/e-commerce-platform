@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E34F17BB-AD9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{700F1892-7BF0-4995-98B4-71B6334F2055}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering", "src\Ordering\Ordering.csproj", "{52BA7564-7464-4778-8A6E-491C7360C549}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.WebApi", "src\Ordering.WebApi\Ordering.WebApi.csproj", "{52BA7564-7464-4778-8A6E-491C7360C549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
-﻿using Ecommerce.Inventory.Models;
+﻿using Ecommerce.Inventory.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Inventory;
+namespace Ecommerce.Inventory.WebApi;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {

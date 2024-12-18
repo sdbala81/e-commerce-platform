@@ -1,0 +1,33 @@
+services:
+  inventory-service:
+    build:
+      context: ./code/inventory/src/Inventory.WebApi
+      dockerfile: Dockerfile
+    image: inventory-service:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8000
+
+  customer-service:
+    build:
+      context: ./code/customer/src/Customer.WebApi
+      dockerfile: Dockerfile
+    image: customer-service:latest
+    ports:
+      - "7000:7000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8000
+
+  order-service:
+    build:
+      context: ./code/ordering/src/Ordering.WebApi
+      dockerfile: Dockerfile
+    image: order-service:latest
+    ports:
+      - "6000:6000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8000

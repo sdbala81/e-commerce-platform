@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5963E4C0-C89
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EDB65145-4396-4466-8065-A30C2E26BB14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "src\Inventory\Inventory.csproj", "{0AEA38DE-B44F-48A5-961F-6F4AAB110E46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.WebApi", "src\Inventory.WebApi\Inventory.WebApi.csproj", "{0AEA38DE-B44F-48A5-961F-6F4AAB110E46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

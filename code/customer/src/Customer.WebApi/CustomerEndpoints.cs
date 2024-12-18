@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Customer;
+namespace Ecommerce.Customer.WebApi;
 
 public static class CustomerEndpoints
 {

@@ -4,8 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>Ecommerce.Customer</RootNamespace>
-        <AssemblyName>Ecommerce.Customer</AssemblyName>
+        <RootNamespace>Ecommerce.Customer.WebApi</RootNamespace>
+        <AssemblyName>Ecommerce.Customer.WebApi</AssemblyName>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 

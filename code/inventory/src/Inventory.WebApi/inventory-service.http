@@ -5,7 +5,7 @@ GET {{inventory_service_HostAddress}}/products
 Accept: application/json
 
 ### 2. Get Product by ID (Example: ID = 1)
-GET {{inventory_service_HostAddress}}/products/ea7b656a-9796-4a11-a403-f2b48283c328
+GET {{inventory_service_HostAddress}}/products/2114de01-6a68-4546-965b-7041e09640cc
 Accept: application/json
 
 ### 3. Create a new Product

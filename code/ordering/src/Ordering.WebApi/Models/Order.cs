@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Ordering.Models;
+﻿namespace Ecommerce.Ordering.WebApi.Models;
 
 public class Order
 {

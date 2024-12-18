@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Inventory.Endpoints;
+namespace Ecommerce.Inventory.WebApi.Endpoints;
 
 public static class ProductCategoryEndpoints
 {

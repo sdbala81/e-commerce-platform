@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Ecommerce.Inventory.Models;
+namespace Ecommerce.Inventory.WebApi.Models;
 
 public class Product
 {

@@ -1,5 +1,5 @@
-using Ecommerce.Inventory;
-using Ecommerce.Inventory.Endpoints;
+using Ecommerce.Inventory.WebApi;
+using Ecommerce.Inventory.WebApi.Endpoints;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

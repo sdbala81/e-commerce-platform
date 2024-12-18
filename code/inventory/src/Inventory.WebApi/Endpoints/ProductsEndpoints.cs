@@ -1,7 +1,7 @@
-﻿using Ecommerce.Inventory.Models;
+﻿using Ecommerce.Inventory.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Inventory.Endpoints;
+namespace Ecommerce.Inventory.WebApi.Endpoints;
 
 public static class ProductEndpoints
 {

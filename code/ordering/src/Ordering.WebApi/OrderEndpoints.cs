@@ -1,7 +1,7 @@
-﻿using Ecommerce.Ordering.Models;
+﻿using Ecommerce.Ordering.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Ordering;
+namespace Ecommerce.Ordering.WebApi;
 
 public static class OrderEndpoints
 {

@@ -1,5 +1,5 @@
 using Ecommerce.Ordering;
-using Ecommerce.Ordering.Models;
+using Ecommerce.Ordering.WebApi;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
