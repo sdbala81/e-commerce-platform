@@ -398,3 +398,10 @@ FodyWeavers.xsd
 *.sln.iml
 **/.idea/
 **/launchSettings.json
+
+# Terraform variable files
+**/*.tfvars
+**/*.tfstate
+**/*.tfstate.*
+**/.terraform
+**/*.lock.*
