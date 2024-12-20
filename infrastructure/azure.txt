@@ -1,0 +1,21 @@
+az account set --subscription 3ccf8c3b-dcdf-457c-9a2f-fbd747fe18bf
+
+az group create --name global-tickets-rg --location westeurope
+
+az aks create -n global-tickets-aks -g global-tickets-rg --node-osdisk-type Ephemeral --node-osdisk-size 30 --network-plugin azure --generate-ssh-keys
+
+az group delete --name global-tickets-rg --yes --no-wait
+
+
+===================================================================
+
+
+docker tag frontend globalticketsacr.azurecr.io/inventory
+docker tag catalog globalticketsacr.azurecr.io/ordering
+docker tag ordering globalticketsacr.azurecr.io/customer
+
+docker login globalticketsacr.azurecr.io
+
+docker push globalticketsacr.azurecr.io/inventory
+docker push catalog globalticketsacr.azurecr.io/ordering
+docker push ordering globalticketsacr.azurecr.io/customer

@@ -1,6 +1,6 @@
 variable "resource_group_name" {
   description = "The name of the resource group"
-  default     = "global-tickets-aks"
+  default     = "global-tickets-rg"
 }
 
 variable "location" {
@@ -10,7 +10,7 @@ variable "location" {
 
 variable "aks_cluster_name" {
   description = "The name of the AKS cluster"
-  default     = "global-tickets-demo"
+  default     = "global-tickets-aks"
 }
 
 variable "node_os_disk_type" {
@@ -25,7 +25,7 @@ variable "node_os_disk_size" {
 
 variable "network_plugin" {
   description = "The network plugin for the AKS cluster"
-  default     = "azure"
+  default     = "kubenet"
 }
 
 variable "acr_name" {
@@ -41,4 +41,9 @@ variable "acr_sku" {
 variable "subscription_id" {
   description = "The Azure subscription ID"
   default     = "your-subscription-id"
+}
+
+variable "node_resource_group" {
+  description = "The name of the node resource group"
+  default     = "global-tickets-node-rg"
 }

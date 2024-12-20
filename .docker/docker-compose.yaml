@@ -2,7 +2,7 @@ services:
   inventory:
     container_name: inventory
     build:
-      context: ./code/inventory/src/Inventory.WebApi
+      context: ../code/inventory/src/Inventory.WebApi
       dockerfile: Dockerfile
     image: inventory:latest
     ports:
@@ -14,7 +14,7 @@ services:
   customer:
     container_name: customer
     build:
-      context: ./code/customer/src/Customer.WebApi
+      context: ../code/customer/src/Customer.WebApi
       dockerfile: Dockerfile
     image: customer:latest
     ports:
@@ -26,7 +26,7 @@ services:
   order:
     container_name: order
     build:
-      context: ./code/ordering/src/Ordering.WebApi
+      context: ../code/ordering/src/Ordering.WebApi
       dockerfile: Dockerfile
     image: order:latest
     ports:

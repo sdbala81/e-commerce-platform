@@ -8,11 +8,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   dns_prefix          = "${var.aks_cluster_name}-dns"
+  node_resource_group = var.node_resource_group
 
   default_node_pool {
     name            = "default"
     node_count      = 1
-    vm_size         = "Standard_DS2_v2"
+    vm_size         = "Standard_B2s"
     os_disk_type    = var.node_os_disk_type
     os_disk_size_gb = var.node_os_disk_size
   }
@@ -29,7 +30,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 resource "azurerm_container_registry" "acr" {
   name                = var.acr_name
   resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
+  location            = var.location
   sku                 = var.acr_sku
 
   admin_enabled          = false
