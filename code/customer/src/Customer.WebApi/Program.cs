@@ -23,13 +23,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-using var scope = app.Services.CreateScope();
-
-var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-if (!await dbContext.Customers.AnyAsync())
+// Seed the database
+using (var scope = app.Services.CreateScope())
 {
-    dbContext.Customers.AddRange(CustomerSeed.GetInitialCustomers());
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    CustomerSeed.Seed(dbContext);
 }
 
 app.MapCustomerEndpoints();
