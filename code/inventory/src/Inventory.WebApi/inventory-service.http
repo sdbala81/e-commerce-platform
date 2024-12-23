@@ -1,11 +1,11 @@
-@inventory_service_HostAddress = http://localhost:8000
+@inventory_service_HostAddress = http://20.67.78.186:8000
 
 ### 1. Get all Products
 GET {{inventory_service_HostAddress}}/products
 Accept: application/json
 
 ### 2. Get Product by ID (Example: ID = 1)
-GET {{inventory_service_HostAddress}}/products/2114de01-6a68-4546-965b-7041e09640cc
+GET {{inventory_service_HostAddress}}/products/3bb5259d-141a-4852-a67e-098ce07afd41
 Accept: application/json
 
 ### 3. Create a new Product
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### 4. Update an existing Product (Example: ID = 1)
-PUT {{inventory_service_HostAddress}}/products/1
+PUT {{inventory_service_HostAddress}}/products/3bb5259d-141a-4852-a67e-098ce07afd41
 Content-Type: application/json
 
 {

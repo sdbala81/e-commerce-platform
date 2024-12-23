@@ -11,11 +11,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   node_resource_group = var.node_resource_group
 
   default_node_pool {
-    name            = "default"
-    node_count      = 1
-    vm_size         = "Standard_B2s"
-    os_disk_type    = var.node_os_disk_type
-    os_disk_size_gb = var.node_os_disk_size
+    name                        = "default"
+    node_count                  = 3
+    vm_size                     = "Standard_DS3_v2"
+    os_disk_type                = var.node_os_disk_type
+    os_disk_size_gb             = var.node_os_disk_size
+    temporary_name_for_rotation = "defaulttmp"
   }
 
   network_profile {

@@ -33,8 +33,8 @@ spec:
     spec:
       containers:
         - name: inventory
-          image: globaltickets.inventory:latest
-          imagePullPolicy: Never
+          image: globalticketsacr.azurecr.io/globaltickets.inventory:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:
@@ -42,8 +42,8 @@ spec:
               value: "Development"
           resources:
             limits:
-              memory: "1Gi"
-              cpu: "750m"
+              memory: "512Mi"
+              cpu: "500m"
             requests:
-              memory: "500Mi"
+              memory: "256Mi"
               cpu: "250m"

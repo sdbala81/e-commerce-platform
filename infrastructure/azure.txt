@@ -6,16 +6,34 @@ az aks create -n global-tickets-aks -g global-tickets-rg --node-osdisk-type Ephe
 
 az group delete --name global-tickets-rg --yes --no-wait
 
-
-===================================================================
-
-
-docker tag frontend globalticketsacr.azurecr.io/inventory
-docker tag catalog globalticketsacr.azurecr.io/ordering
-docker tag ordering globalticketsacr.azurecr.io/customer
+===============================================================================
 
 docker login globalticketsacr.azurecr.io
 
-docker push globalticketsacr.azurecr.io/inventory
-docker push catalog globalticketsacr.azurecr.io/ordering
-docker push ordering globalticketsacr.azurecr.io/customer
+az acr login --name globalticketsacr
+
+docker build -t globalticketsacr.azurecr.io/globaltickets.order:latest -f Dockerfile .
+docker push globalticketsacr.azurecr.io/globaltickets.order:latest
+
+
+docker build -t globalticketsacr.azurecr.io/globaltickets.customer:latest -f Dockerfile .
+docker push globalticketsacr.azurecr.io/globaltickets.customer:latest
+
+docker build -t globalticketsacr.azurecr.io/globaltickets.inventory:latest -f Dockerfile .
+docker push globalticketsacr.azurecr.io/globaltickets.inventory:latest
+
+
+================ To view all images in Registry ================================
+az acr repository list --name globalticketsacr --output table
+
+az acr repository show-tags --name globalticketsacr --repository globaltickets.ordering --output table
+
+
+az aks list --output table
+
+az aks show --resource-group global-tickets-rg --name global-tickets-aks --output table
+
+kubectl config use-context global-tickets-aks
+
+
+az aks get-credentials -n global-tickets-aks -g global-tickets-rg

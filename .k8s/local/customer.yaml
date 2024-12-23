@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: customer
-          image: customer:latest
+          image: globaltickets.customer:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 7000
@@ -42,8 +42,8 @@ spec:
               value: "Development"
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "1Gi"
+              cpu: "750m"
             requests:
-              memory: "256Mi"
+              memory: "500Mi"
               cpu: "250m"

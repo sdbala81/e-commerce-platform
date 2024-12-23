@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: inventory
+  name: customer
   labels:
-    app: inventory
+    app: customer
 spec:
   selector:
-    app: inventory
+    app: customer
   ports:
     - protocol: TCP
-      port: 8000
-      targetPort: 8000
+      port: 7000
+      targetPort: 7000
       name: http
   type: LoadBalancer
 
@@ -18,32 +18,32 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: inventory
+  name: customer
   labels:
-    app: inventory
+    app: customer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: inventory
+      app: customer
   template:
     metadata:
       labels:
-        app: inventory
+        app: customer
     spec:
       containers:
-        - name: inventory
-          image: globaltickets.inventory:latest
-          imagePullPolicy: Never
+        - name: customer
+          image: globalticketsacr.azurecr.io/globaltickets.customer:latest
+          imagePullPolicy: Always
           ports:
-            - containerPort: 8000
+            - containerPort: 7000
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Development"
           resources:
             limits:
-              memory: "1Gi"
-              cpu: "750m"
+              memory: "512Mi"
+              cpu: "500m"
             requests:
-              memory: "500Mi"
+              memory: "256Mi"
               cpu: "250m"
