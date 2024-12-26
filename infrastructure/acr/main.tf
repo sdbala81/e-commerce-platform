@@ -7,7 +7,8 @@ resource "azurerm_container_registry" "acr" {
   name                = var.acr_name
   resource_group_name = azurerm_resource_group.acr_rg.name
   location            = var.location
-  sku                 = var.acr_sku
+  sku                 = "Standard"
 
-  admin_enabled = false
+  admin_enabled          = false
+  anonymous_pull_enabled = true
 }

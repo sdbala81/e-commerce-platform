@@ -1,4 +1,4 @@
-@customer_service_HostAddress = http://localhost:7000
+@customer_service_HostAddress = http://135.236.55.82:7000/
 
 ### 1. Get all customers
 GET {{customer_service_HostAddress}}/customers

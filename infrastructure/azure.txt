@@ -33,4 +33,4 @@ az aks show --resource-group global-tickets-rg --name global-tickets-aks --outpu
 
 kubectl config use-context global-tickets-aks
 
-az aks get-credentials -n global-tickets-aks -g global-tickets-rg
+az aks get-credentials -n global-tickets-aks -g global-tickets-aks-rg

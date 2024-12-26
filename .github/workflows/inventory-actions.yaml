@@ -12,8 +12,8 @@ jobs:
     env:
       imageRepository: "inventory"
       containerRegistry: "globalticketsacr.azurecr.io"
-      dockerfilePath: "code/inventory/Dockerfile"
-      deploymentFile: "k8s/remote/inventory.yaml"
+      dockerfilePath: "code/inventory/src/Inventory.WebApi/Dockerfile"
+      deploymentFile: "inventory.yaml"
       namespace: "globaltickets"
 
     steps:
@@ -34,11 +34,17 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}/code/inventory
+          docker build -t ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}/code/inventory
 
       - name: push image to ACR
         run: |
-          docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+          docker push ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}}
+
+      - name: Echo Build.BuildId
+        run: echo Build.BuildId=${{github.run_number}}
+
+      - name: Echo github.run_number
+        run: echo github.run_number=${{github.run_number}}
 
       - name: Replace tokens
         uses: cschleiden/replace-tokens@v1
@@ -46,6 +52,7 @@ jobs:
           files: ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
         env:
           Build.BuildId: ${{github.run_number}}
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
