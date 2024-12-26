@@ -12,11 +12,8 @@ jobs:
   create-namespace:
     runs-on: ubuntu-latest
     steps:
-      - uses: azure/k8s-set-context@v4
-        with:
-          method: kubeconfig
-          kubeconfig: ${{secrets.KUBECONFIG}}
-        id: setcontext
+      - name: Checkout the repository
+        uses: actions/checkout@v4
 
       - name: Print Current Directory
         run: pwd
@@ -24,5 +21,11 @@ jobs:
       - name: List All Files in Repository
         run: ls -R
 
+      - uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{secrets.KUBECONFIG}}
+        id: setcontext
+
       - name: Apply namespace
-        run: kubectl apply -f $../../.k8s/remote/namespace.yaml
+        run: kubectl apply -${{github.workspace}}/.k8s/remote/namespace.yaml

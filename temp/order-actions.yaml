@@ -17,6 +17,7 @@ jobs:
       namespace: "globaltickets"
 
     steps:
+      - name: Checkout the repository
       - uses: actions/checkout@v4
 
       - name: Login to DockerHub
