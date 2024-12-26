@@ -46,6 +46,7 @@ jobs:
           files: ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
         env:
           Build.BuildId: ${{github.run_number}}
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -71,4 +72,4 @@ jobs:
         with:
           namespace: "globaltickets"
           manifests: |
-            ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
+            ./${{env.deploymentFile}}
