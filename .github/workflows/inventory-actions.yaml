@@ -12,12 +12,14 @@ jobs:
     env:
       imageRepository: "inventory"
       containerRegistry: "globalticketsacr.azurecr.io"
-      dockerfilePath: "code/inventory/Dockerfile"
-      deploymentFile: "k8s/remote/inventory.yaml"
+      dockerfilePath: "./Dockerfile"
+      deploymentFile: "./inventory.yaml"
       namespace: "globaltickets"
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: code/inventory
 
       - name: Print Current Directory
         run: pwd
