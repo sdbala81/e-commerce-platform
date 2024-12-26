@@ -1,12 +1,12 @@
-resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
+resource "azurerm_resource_group" "aks_rg" {
+  name     = var.aks_resource_group_name
   location = var.location
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = var.aks_cluster_name
   location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = azurerm_resource_group.aks_rg.name
   dns_prefix          = "${var.aks_cluster_name}-dns"
   node_resource_group = var.node_resource_group
 
@@ -26,14 +26,4 @@ resource "azurerm_kubernetes_cluster" "aks" {
   identity {
     type = "SystemAssigned"
   }
-}
-
-resource "azurerm_container_registry" "acr" {
-  name                = var.acr_name
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.location
-  sku                 = var.acr_sku
-
-  admin_enabled          = false
-  anonymous_pull_enabled = true
 }

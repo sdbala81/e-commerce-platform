@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: customer
+  namespace: globaltickets
   labels:
     app: customer
 spec:
@@ -19,6 +20,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: customer
+  namespace: globaltickets
   labels:
     app: customer
 spec:
