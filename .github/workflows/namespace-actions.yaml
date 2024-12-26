@@ -18,5 +18,11 @@ jobs:
           kubeconfig: ${{secrets.KUBECONFIG}}
         id: setcontext
 
+      - name: Print Current Directory
+        run: pwd
+
+      - name: List Root Directory
+        run: ls -la
+
       - name: Apply namespace
         run: kubectl apply -f $../../.k8s/remote/namespace.yaml
