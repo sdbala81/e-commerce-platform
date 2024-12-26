@@ -19,4 +19,4 @@ jobs:
         id: setcontext
 
       - name: Apply namespace
-        run: kubectl apply -f .k8s/remote/namespace.yaml
+        run: kubectl apply -f ${{github.workspace}}/.k8s/remote/namespace.yaml
