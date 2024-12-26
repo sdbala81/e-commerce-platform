@@ -1,5 +1,3 @@
-az account set --subscription 3ccf8c3b-dcdf-457c-9a2f-fbd747fe18bf
-
 az group create --name global-tickets-rg --location westeurope
 
 az aks create -n global-tickets-aks -g global-tickets-rg --node-osdisk-type Ephemeral --node-osdisk-size 30 --network-plugin azure --generate-ssh-keys
@@ -37,3 +35,4 @@ kubectl config use-context global-tickets-aks
 
 
 az aks get-credentials -n global-tickets-aks -g global-tickets-rg
+
