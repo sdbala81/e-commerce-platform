@@ -12,8 +12,8 @@ jobs:
     env:
       imageRepository: "inventory"
       containerRegistry: "globalticketsacr.azurecr.io"
-      dockerfilePath: "./Dockerfile"
-      deploymentFile: "./inventory.yaml"
+      dockerfilePath: "code/inventory/Dockerfile"
+      deploymentFile: "k8s/remote/inventory.yaml"
       namespace: "globaltickets"
 
     steps:
@@ -36,7 +36,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}
+          docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}/code/inventory
 
       - name: push image to ACR
         run: |
