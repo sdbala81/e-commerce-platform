@@ -13,7 +13,7 @@ jobs:
       imageRepository: "customer"
       containerRegistry: "globalticketsacr.azurecr.io"
       dockerfilePath: "code/customer/src/Customer.WebApi/Dockerfile"
-      deploymentFile: "k8s/remote/customer.yaml"
+      deploymentFile: "customer.yaml"
       namespace: "globaltickets"
 
     steps:
@@ -71,4 +71,4 @@ jobs:
         with:
           namespace: "globaltickets"
           manifests: |
-            ./${{env.deploymentFile}}
+            ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
