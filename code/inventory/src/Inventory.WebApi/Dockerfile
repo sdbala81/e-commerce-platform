@@ -1,23 +1,20 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Debug
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/Inventory.WebApi/Inventory.WebApi.csproj", "src/Inventory.WebApi/"]
-RUN dotnet restore "src/Inventory.WebApi/Inventory.WebApi.csproj"
-COPY . .
-WORKDIR "/src/src/Inventory.WebApi"
+COPY ["Inventory.WebApi.csproj", "Inventory.WebApi/"]
+RUN dotnet restore "Inventory.WebApi/Inventory.WebApi.csproj"
+COPY . Inventory.WebApi/
+WORKDIR "/src/Inventory.WebApi"
 RUN dotnet build "Inventory.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "Inventory.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+EXPOSE 8000
+
 ENTRYPOINT ["dotnet", "Ecommerce.Inventory.WebApi.dll"]
