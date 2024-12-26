@@ -13,7 +13,7 @@ jobs:
       imageRepository: "inventory"
       containerRegistry: "globalticketsacr.azurecr.io"
       dockerfilePath: "code/inventory/Dockerfile"
-      deploymentFile: ".k8s/remote/inventory.yaml"
+      deploymentFile: "k8s/remote/inventory.yaml"
       namespace: "globaltickets"
 
     steps:
@@ -37,14 +37,14 @@ jobs:
       - name: Replace tokens
         uses: cschleiden/replace-tokens@v1
         with:
-          files: ${{github.workspace}}/.k8s/remote/${{env.deploymentFile}}
+          files: ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
         env:
           Build.BuildId: ${{github.run_number}}
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: deployfile
-          path: ${{github.workspace}}/.k8s/remote/${{env.deploymentFile}}
+          path: ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
 
   deploy:
     runs-on: ubuntu-latest
