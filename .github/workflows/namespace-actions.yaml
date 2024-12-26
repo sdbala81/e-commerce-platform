@@ -11,11 +11,11 @@ on:
 jobs:
   create-namespace:
     runs-on: ubuntu-latest
-    env:
-      deploymentFile: "k8s/remote/namespace.yaml"
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
+        with:
+          path: k8s
 
       - name: Print Current Directory
         run: pwd
@@ -32,4 +32,10 @@ jobs:
       - uses: Azure/k8s-deploy@v5
         with:
           manifests: |
-            ./${{env.deploymentFile}}
+            ./remote/namespace.yaml
+            ./dashboard/service-account.yaml
+            ./dashboard/cluster-role-binding.yml
+
+      - name: Deploy Kubernetes Dashboard
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
