@@ -1,0 +1,22 @@
+name: Create Kubernetes Namespace
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  create-namespace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{secrets.KUBECONFIG}}
+        id: setcontext
+
+      - name: Apply namespace
+        run: kubectl apply -f .k8s/remote/namespace.yaml
