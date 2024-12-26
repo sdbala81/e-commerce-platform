@@ -11,6 +11,8 @@ on:
 jobs:
   create-namespace:
     runs-on: ubuntu-latest
+    env:
+      deploymentFile: "k8s/remote/namespace.yaml"
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -27,5 +29,7 @@ jobs:
           kubeconfig: ${{secrets.KUBECONFIG}}
         id: setcontext
 
-      - name: Apply namespace
-        run: kubectl apply -${{github.workspace}}/k8s/remote/namespace.yaml
+      - uses: Azure/k8s-deploy@v5
+        with:
+          manifests: |
+            ./${{env.deploymentFile}}
