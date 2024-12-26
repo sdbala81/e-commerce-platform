@@ -1,12 +1,10 @@
-name: Deploy Kubernetes Dashboard and Service Account
+name: Deploy Service Account And Cluster Role Binding
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Deploy Kubernetes Dashboard Namespace"]
+    types:
+      - completed
 
 jobs:
   deploy-dashboard:
@@ -31,14 +29,9 @@ jobs:
           kubeconfig: ${{secrets.KUBECONFIG}}
         id: setcontext
 
-      # - name: Deploy Kubernetes Dashboard
-      #   run: |
-      #     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-
       - uses: Azure/k8s-deploy@v5
-        name: Deploy Service Account and Cluster Role Binding
         with:
+          namespace: "kubernetes-dashboard"
           manifests: |
-            ./k8s/dashboard/recommended.yaml
             ./k8s/dashboard/service-account.yaml
             ./k8s/dashboard/cluster-role-binding.yml
