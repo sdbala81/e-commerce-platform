@@ -12,7 +12,7 @@ jobs:
     env:
       imageRepository: "inventory"
       containerRegistry: "globalticketsacr.azurecr.io"
-      dockerfilePath: "code/inventory/Dockerfile"
+      dockerfilePath: "code/inventory/src/Inventory.WebApi/Dockerfile"
       deploymentFile: "k8s/remote/inventory.yaml"
       namespace: "globaltickets"
 
