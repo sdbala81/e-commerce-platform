@@ -38,7 +38,7 @@ jobs:
 
       - name: push image to ACR
         run: |
-          docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+          docker push ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}}
 
       - name: Replace tokens
         uses: cschleiden/replace-tokens@v1
