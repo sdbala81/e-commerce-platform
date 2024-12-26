@@ -5,7 +5,7 @@ WORKDIR /src
 COPY ["code/inventory/src/Inventory.WebApi/Inventory.WebApi.csproj", "Inventory.WebApi/"]
 RUN dotnet restore "Inventory.WebApi/Inventory.WebApi.csproj"
 
-COPY code/Inventory/src/Inventory.WebApi/ Inventory.WebApi/
+COPY code/inventory/src/Inventory.WebApi/ Inventory.WebApi/
 
 RUN ls -R Inventory.WebApi/
 

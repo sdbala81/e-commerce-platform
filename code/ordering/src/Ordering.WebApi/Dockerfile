@@ -5,7 +5,7 @@ WORKDIR /src
 COPY ["code/ordering/src/Ordering.WebApi/Ordering.WebApi.csproj", "Ordering.WebApi/"]
 RUN dotnet restore "Ordering.WebApi/Ordering.WebApi.csproj"
 
-COPY code/Ordering/src/Ordering.WebApi/ Ordering.WebApi/
+COPY code/ordering/src/Ordering.WebApi/ Ordering.WebApi/
 
 RUN ls -R Ordering.WebApi/
 
