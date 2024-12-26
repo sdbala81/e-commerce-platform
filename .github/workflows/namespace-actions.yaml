@@ -15,7 +15,9 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          path: k8s
+          fetch-depth: 0 # Required for sparse checkout
+          sparse-checkout: |
+            k8s
 
       - name: Print Current Directory
         run: pwd
