@@ -38,10 +38,3 @@ kubectl config use-context global-tickets-aks
 
 az aks get-credentials -n global-tickets-aks -g global-tickets-rg
 
-
-========= Azure Container Registry =======================
-
-username - globalticketsacr
- =====passwords =======
-Sn+AYgyYqIG2H8VHN4IVYqYLUkUHdV0umVklAz63hJ+ACRAYTpWl
-ku7eAd3XjhD+gMS0mhjekC4NijjuzgUxgFRm2KbZbX+ACRC4pBqk
