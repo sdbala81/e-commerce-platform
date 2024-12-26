@@ -1,13 +1,15 @@
-name: Create Kubernetes Namespace
+name: Deploy Kubernetes Dashboard and Service Account
 
 on:
-  workflow_run:
-    workflows: ["Deploy Kubernetes Dashboard and Service Account"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  create-namespace:
+  deploy-dashboard:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -29,7 +31,13 @@ jobs:
           kubeconfig: ${{secrets.KUBECONFIG}}
         id: setcontext
 
+      - name: Deploy Kubernetes Dashboard
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+
       - uses: Azure/k8s-deploy@v5
+        name: Deploy Service Account and Cluster Role Binding
         with:
           manifests: |
-            ./k8s/remote/namespace.yaml
+            ./k8s/dashboard/service-account.yaml
+            ./k8s/dashboard/cluster-role-binding.yml
