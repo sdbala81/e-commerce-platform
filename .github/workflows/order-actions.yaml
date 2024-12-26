@@ -2,7 +2,7 @@ name: Build and deploy order
 
 on:
   workflow_run:
-    workflows: ["Build and deploy customer"]
+    workflows: ["Create Kubernetes Namespace"]
     types:
       - completed
 
