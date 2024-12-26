@@ -18,8 +18,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: code/inventory
 
       - name: Print Current Directory
         run: pwd

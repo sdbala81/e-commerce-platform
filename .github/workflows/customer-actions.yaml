@@ -19,6 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Print Current Directory
+        run: pwd
+
+      - name: List All Files in Repository
+        run: ls -R
+
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:

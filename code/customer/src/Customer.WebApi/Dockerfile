@@ -2,10 +2,13 @@
 ARG BUILD_CONFIGURATION=Release
 
 WORKDIR /src
-COPY ["Customer.WebApi.csproj", "Customer.WebApi/"]
+COPY ["Customer.WebApi/Customer.WebApi.csproj", "Customer.WebApi/"]
 RUN dotnet restore "Customer.WebApi/Customer.WebApi.csproj"
+
 COPY . Customer.WebApi/
+
 WORKDIR "/src/Customer.WebApi"
+
 RUN dotnet build "Customer.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
