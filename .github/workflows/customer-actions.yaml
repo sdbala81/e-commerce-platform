@@ -12,7 +12,7 @@ jobs:
     env:
       imageRepository: "customer"
       containerRegistry: "globalticketsacr.azurecr.io"
-      dockerfilePath: "code/customer/Dockerfile"
+      dockerfilePath: "code/customer/src/Customer.WebApi/Dockerfile"
       deploymentFile: "k8s/remote/customer.yaml"
       namespace: "globaltickets"
 
