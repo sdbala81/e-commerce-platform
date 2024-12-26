@@ -40,6 +40,12 @@ jobs:
         run: |
           docker push ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}}
 
+      - name: Echo Build.BuildId
+        run: echo Build.BuildId=${{github.run_number}}
+
+      - name: Echo github.run_number
+        run: echo github.run_number=${{github.run_number}}
+
       - name: Replace tokens
         uses: cschleiden/replace-tokens@v1
         with:
