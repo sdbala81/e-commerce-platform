@@ -2,10 +2,15 @@
 ARG BUILD_CONFIGURATION=Release
 
 WORKDIR /src
-COPY ["Ordering.WebApi.csproj", "Ordering.WebApi/"]
+COPY ["code/ordering/src/Ordering.WebApi/Ordering.WebApi.csproj", "Ordering.WebApi/"]
 RUN dotnet restore "Ordering.WebApi/Ordering.WebApi.csproj"
-COPY . Ordering.WebApi/
+
+COPY code/Ordering/src/Ordering.WebApi/ Ordering.WebApi/
+
+RUN ls -R Ordering.WebApi/
+
 WORKDIR "/src/Ordering.WebApi"
+
 RUN dotnet build "Ordering.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
@@ -15,6 +20,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-EXPOSE 6000
+EXPOSE 7000
 
 ENTRYPOINT ["dotnet", "Ecommerce.Ordering.WebApi.dll"]
