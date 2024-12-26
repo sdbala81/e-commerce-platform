@@ -1,13 +1,10 @@
 name: Build and deploy order
 
 on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-    paths:
-      - "code/order/**"
-  repository_dispatch:
-    types: [order-actions]
+  workflow_run:
+    workflows: ["Build and deploy customer"]
+    types:
+      - completed
 
 jobs:
   build:
