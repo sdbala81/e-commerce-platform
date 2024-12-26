@@ -34,9 +34,9 @@ jobs:
       - uses: Azure/k8s-deploy@v5
         with:
           manifests: |
-            ./remote/namespace.yaml
-            ./dashboard/service-account.yaml
-            ./dashboard/cluster-role-binding.yml
+            ./k8s/remote/namespace.yaml
+            ./k8s/dashboard/service-account.yaml
+            ./k8s/dashboard/cluster-role-binding.yml
 
       - name: Deploy Kubernetes Dashboard
         run: |
