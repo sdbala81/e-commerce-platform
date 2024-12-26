@@ -21,8 +21,8 @@ jobs:
       - name: Print Current Directory
         run: pwd
 
-      - name: List Root Directory
-        run: ls -la
+      - name: List All Files in Repository
+        run: ls -R
 
       - name: Apply namespace
         run: kubectl apply -f $../../.k8s/remote/namespace.yaml
