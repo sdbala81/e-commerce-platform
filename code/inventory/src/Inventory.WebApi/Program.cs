@@ -14,6 +14,9 @@ services.AddSwaggerGen();
 services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("Orders"));
 
+// Add health checks
+services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,5 +35,14 @@ using (var scope = app.Services.CreateScope())
 
 app.MapProductEndpoints();
 app.MapProductCategoryEndpoints();
+
+// Map health check endpoint
+app.MapHealthChecks("/", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    ResponseWriter = async (context, report) =>
+    {
+        await context.Response.WriteAsync("Inventory API is running");
+    }
+});
 
 await app.RunAsync();

@@ -14,6 +14,9 @@ services.AddSwaggerGen();
 services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("Orders"));
 
+// Add health checks
+services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,5 +27,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapOrderEndpoints();
+
+// Map health check endpoint
+app.MapHealthChecks("/", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    ResponseWriter = async (context, report) =>
+    {
+        await context.Response.WriteAsync("Ordering API is running");
+    }
+});
 
 await app.RunAsync();

@@ -1,4 +1,4 @@
-@inventory_service_HostAddress = http://20.67.78.186:8000
+@inventory_service_HostAddress = http://20.31.35.114:8000/
 
 ### 1. Get all Products
 GET {{inventory_service_HostAddress}}/products
