@@ -12,7 +12,7 @@ jobs:
     env:
       imageRepository: "globaltickets.order"
       containerRegistry: "globalticketsacr.azurecr.io"
-      dockerfilePath: "code/order/src/Order.WebApi/Dockerfile"
+      dockerfilePath: "code/ordering/src/Ordering.WebApi/Dockerfile"
       deploymentFile: "order.yaml"
       namespace: "globaltickets"
 
