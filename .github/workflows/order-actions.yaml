@@ -10,15 +10,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      imageRepository: "order"
+      imageRepository: "globaltickets.order"
       containerRegistry: "globalticketsacr.azurecr.io"
-      dockerfilePath: "code/customer/src/Order.WebApi/Dockerfile"
+      dockerfilePath: "code/order/src/Order.WebApi/Dockerfile"
       deploymentFile: "order.yaml"
       namespace: "globaltickets"
 
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
+
+      - name: Print Current Directory
+        run: pwd
+
+      - name: List All Files in Repository
+        run: ls -R
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -29,11 +35,17 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}
+          docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}
 
       - name: push image to ACR
         run: |
-          docker push ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}}
+          docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+
+      - name: Echo Build.BuildId
+        run: echo Build.BuildId=${{github.run_number}}
+
+      - name: Echo github.run_number
+        run: echo github.run_number=${{github.run_number}}
 
       - name: Replace tokens
         uses: cschleiden/replace-tokens@v1

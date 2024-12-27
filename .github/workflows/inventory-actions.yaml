@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      imageRepository: "inventory"
+      imageRepository: "globaltickets.inventory"
       containerRegistry: "globalticketsacr.azurecr.io"
       dockerfilePath: "code/inventory/src/Inventory.WebApi/Dockerfile"
       deploymentFile: "inventory.yaml"
@@ -34,11 +34,11 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}/code/inventory
+          docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}
 
       - name: push image to ACR
         run: |
-          docker push ${{env.containerRegistry}}/globaltickets.${{env.imageRepository}}:${{github.run_number}}
+          docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
 
       - name: Echo Build.BuildId
         run: echo Build.BuildId=${{github.run_number}}
