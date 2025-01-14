@@ -20,6 +20,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-EXPOSE 7000
+EXPOSE 8000
 
 ENTRYPOINT ["dotnet", "Ecommerce.Inventory.WebApi.dll"]
