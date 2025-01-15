@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: order
-          image: globalticketsacr.azurecr.io/globaltickets.order:#{Build.BuildId}#
+          image: globalticketsacr.azurecr.io/globaltickets.order:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 6000

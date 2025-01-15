@@ -31,6 +31,12 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_TOKEN }}
 
+      - name: Re-Tag Previous Latest (Optional)
+        run: |
+          docker pull ${{env.containerRegistry}}/${{env.imageRepository}}:latest || echo "No existing :latest image to re-tag"
+          docker tag ${{env.containerRegistry}}/${{env.imageRepository}}:latest ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+          docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+
       - name: Build an image from Dockerfile
         run: |
           docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}} -f ${{env.dockerfilePath}} ${{github.workspace}}

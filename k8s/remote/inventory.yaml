@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: inventory
-          image: globalticketsacr.azurecr.io/globaltickets.inventory:#{Build.BuildId}#
+          image: globalticketsacr.azurecr.io/globaltickets.inventory:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8000

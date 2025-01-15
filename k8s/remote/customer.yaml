@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: customer
-          image: globalticketsacr.azurecr.io/globaltickets.customer:#{Build.BuildId}#
+          image: globalticketsacr.azurecr.io/globaltickets.customer:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 7000
