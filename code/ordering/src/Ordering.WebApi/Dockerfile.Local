@@ -22,4 +22,4 @@ COPY --from=publish /app/publish .
 
 EXPOSE 6000
 
-ENTRYPOINT ["dotnet", "Ordering.WebApi.dll"]
+ENTRYPOINT ["dotnet", "Ecommerce.Ordering.WebApi.dll"]

@@ -22,4 +22,4 @@ COPY --from=publish /app/publish .
 
 EXPOSE 8000
 
-ENTRYPOINT ["dotnet", "Inventory.WebApi.dll"]
+ENTRYPOINT ["dotnet", "Ecommerce.Inventory.WebApi.dll"]
