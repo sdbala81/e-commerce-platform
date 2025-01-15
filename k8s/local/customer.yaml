@@ -5,6 +5,8 @@ metadata:
   namespace: globaltickets
   labels:
     app: customer
+  annotations:
+    argocd.argoproj.io/compare-options: Ignore
 spec:
   selector:
     app: customer
