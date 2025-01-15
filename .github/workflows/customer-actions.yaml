@@ -32,12 +32,16 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_TOKEN }}
 
-      - name: Re-Tag Previous Latest (Optional)
+      - name: Re-Tag Previous Latest
         run: |
-          docker pull ${{env.containerRegistry}}/${{env.imageRepository}}:latest || echo "No existing :latest image to re-tag"
+          set -e
+          if docker pull ${{env.containerRegistry}}/${{env.imageRepository}}:latest; then 
+          echo "Successfully pulled :latest image, proceeding to re-tag."
           docker tag ${{env.containerRegistry}}/${{env.imageRepository}}:latest ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
           docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
-        continue-on-error: true
+          else
+            echo "No existing :latest image to re-tag"
+          fi
 
       - name: Build an image from Dockerfile
         run: |
@@ -46,12 +50,6 @@ jobs:
       - name: push image to ACR
         run: |
           docker push ${{env.containerRegistry}}/${{env.imageRepository}}:latest
-
-      - name: Echo Build.BuildId
-        run: echo Build.BuildId=${{github.run_number}}
-
-      - name: Echo github.run_number
-        run: echo github.run_number=${{github.run_number}}
 
       - name: Replace tokens
         uses: cschleiden/replace-tokens@v1
