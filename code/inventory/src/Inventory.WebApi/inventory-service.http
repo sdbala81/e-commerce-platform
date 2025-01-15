@@ -1,7 +1,7 @@
-@inventory_service_HostAddress = http://20.31.35.114:8000
+@inventory_service_HostAddress = http://localhost:8000
 
 ### 0. Health Check
-GET {{inventory_service_HostAddress}}/
+GET {{inventory_service_HostAddress}}
 Accept: application/json
 
 ### 1. Get all Products
