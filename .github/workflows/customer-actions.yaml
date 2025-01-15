@@ -36,9 +36,9 @@ jobs:
         run: |
           set -e
           if docker pull ${{env.containerRegistry}}/${{env.imageRepository}}:latest; then 
-          echo "Successfully pulled :latest image, proceeding to re-tag."
-          docker tag ${{env.containerRegistry}}/${{env.imageRepository}}:latest ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
-          docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+            echo "Successfully pulled :latest image, proceeding to re-tag."
+            docker tag ${{env.containerRegistry}}/${{env.imageRepository}}:latest ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+            docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
           else
             echo "No existing :latest image to re-tag"
           fi
