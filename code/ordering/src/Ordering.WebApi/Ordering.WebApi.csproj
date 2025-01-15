@@ -7,7 +7,6 @@
         <RootNamespace>Ecommerce.Ordering.WebApi</RootNamespace>
         <AssemblyName>Ecommerce.Ordering.WebApi</AssemblyName> 
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS> 
-        <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>
 
     <ItemGroup>
