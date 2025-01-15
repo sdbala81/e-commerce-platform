@@ -1,9 +1,9 @@
-name: Build and deploy customer
+name: Build and Push Image For Customer
 
 on:
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   build:

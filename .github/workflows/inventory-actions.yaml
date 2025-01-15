@@ -1,9 +1,9 @@
-name: Build and deploy inventory
+name: Build and Push Image For Inventory
 
 on:
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   build:

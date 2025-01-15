@@ -1,9 +1,9 @@
-name: Build and deploy order
+name: Build and Push Image For Order
 
 on:
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   build:
