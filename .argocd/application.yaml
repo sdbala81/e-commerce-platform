@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: global-tickets-aks
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/sdbala81/e-commerce-platform"
+    targetRevision: HEAD
+    path: k8s/remote
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: global-tickets-aks
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,10 +1,9 @@
 name: Build and deploy inventory
 
 on:
-  workflow_run:
-    workflows: ["Create Kubernetes Namespace"]
-    types:
-      - completed
+  push:
+    branches:
+      - '**'
 
 jobs:
   build:
@@ -68,14 +67,4 @@ jobs:
         with:
           name: deployfile
 
-      - uses: azure/k8s-set-context@v4
-        with:
-          method: kubeconfig
-          kubeconfig: ${{secrets.KUBECONFIG}}
-        id: setcontext
-
-      - uses: Azure/k8s-deploy@v5
-        with:
-          namespace: "globaltickets"
-          manifests: |
-            ./${{env.deploymentFile}}
+      # ...removed Azure deployment steps...
