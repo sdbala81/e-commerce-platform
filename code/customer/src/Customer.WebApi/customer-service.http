@@ -1,4 +1,4 @@
-@customer_service_HostAddress = http://localhost:7000
+@customer_service_HostAddress = http://4.175.26.38:7000
 
 ### Health Check
 GET {{customer_service_HostAddress}}

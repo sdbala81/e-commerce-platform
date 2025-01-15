@@ -1,4 +1,4 @@
-@inventory_service_HostAddress = http://localhost:8000
+@inventory_service_HostAddress = http://4.175.29.133:8000
 
 ### 0. Health Check
 GET {{inventory_service_HostAddress}}
