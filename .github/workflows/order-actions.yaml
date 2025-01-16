@@ -10,10 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       imageRepository: "globaltickets.order"
-      containerRegistry: "globalticketsacr.azurecr.io"
       dockerfilePath: "code/ordering/src/Ordering.WebApi/Dockerfile"
-      deploymentFile: "order.yaml"
-      namespace: "globaltickets"
 
     steps:
       - name: Checkout the repository
@@ -35,18 +32,18 @@ jobs:
       - name: Re-Tag Previous Latest
         run: |
           set -e
-          if docker pull ghcr.io/${{ github.repository }}/order:latest; then 
+          if docker pull ghcr.io/${{ github.repository_owner }}/${{env.imageRepository}}:latest; then 
             echo "Successfully pulled :latest image, proceeding to re-tag."
-            docker tag ghcr.io/${{ github.repository }}/order:latest ghcr.io/${{ github.repository }}/order:${{ github.run_number }}
-            docker push ghcr.io/${{ github.repository }}/order:${{ github.run_number }}
+            docker tag ghcr.io/${{ github.repository_owner }}/${{env.imageRepository}}:latest ghcr.io/${{ github.repository_owner }}/${{env.imageRepository}}:${{ github.run_number }}
+            docker push ghcr.io/${{ github.repository_owner }}/${{env.imageRepository}}:${{ github.run_number }}
           else
             echo "No existing :latest image to re-tag"
           fi
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/order:latest -f ${{ env.dockerfilePath }} ${{ github.workspace }}
+          docker build -t ghcr.io/${{ github.repository_owner }}/${{env.imageRepository}}:latest -f ${{ env.dockerfilePath }} ${{ github.workspace }}
 
       - name: Push image to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ github.repository }}/order:latest
+          docker push ghcr.io/${{ github.repository_owner }}/${{env.imageRepository}}:latest
