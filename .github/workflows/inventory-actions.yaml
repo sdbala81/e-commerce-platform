@@ -24,52 +24,28 @@ jobs:
       - name: List All Files in Repository
         run: ls -R
 
-      - name: Login to DockerHub
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.containerRegistry }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Re-Tag Previous Latest
         run: |
           set -e
-          if docker pull ${{env.containerRegistry}}/${{env.imageRepository}}:latest; then 
+          if docker pull ghcr.io/${{ github.repository }}/inventory:latest; then 
             echo "Successfully pulled :latest image, proceeding to re-tag."
-            docker tag ${{env.containerRegistry}}/${{env.imageRepository}}:latest ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
-            docker push ${{env.containerRegistry}}/${{env.imageRepository}}:${{github.run_number}}
+            docker tag ghcr.io/${{ github.repository }}/inventory:latest ghcr.io/${{ github.repository }}/inventory:${{ github.run_number }}
+            docker push ghcr.io/${{ github.repository }}/inventory:${{ github.run_number }}
           else
             echo "No existing :latest image to re-tag"
           fi
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t ${{env.containerRegistry}}/${{env.imageRepository}}:latest -f ${{env.dockerfilePath}} ${{github.workspace}}
+          docker build -t ghcr.io/${{ github.repository }}/inventory:latest -f ${{ env.dockerfilePath }} ${{ github.workspace }}
 
-      - name: push image to ACR
+      - name: Push image to GitHub Container Registry
         run: |
-          docker push ${{env.containerRegistry}}/${{env.imageRepository}}:latest
-
-      - name: Replace tokens
-        uses: cschleiden/replace-tokens@v1
-        with:
-          files: ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
-        env:
-          Build.BuildId: ${{github.run_number}}
-
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: deployfile
-          path: ${{github.workspace}}/k8s/remote/${{env.deploymentFile}}
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: deployfile
-
-      # ...removed Azure deployment steps...
+          docker push ghcr.io/${{ github.repository }}/inventory:latest
