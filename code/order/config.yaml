@@ -1,0 +1,10 @@
+﻿server:
+  port: 8000
+  host: "localhost"
+
+database:
+  host: "localhost"
+  user: "postgres"
+  password: "postgres"
+  name: "GlobalTickets.Order"
+  port: 5432
