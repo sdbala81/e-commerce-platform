@@ -1,0 +1,38 @@
+﻿@baseUrl = http://localhost:8000
+
+### Get all orders
+GET {{baseUrl}}/orders
+Content-Type: application/json
+
+### Get order by ID
+GET {{baseUrl}}/orders/278878c0-53fd-42b3-9bad-92b81be32893
+Content-Type: application/json
+
+### Create a new order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "id": "{{$random.uuid}}",
+  "amount": 3000.0,
+  "customer_id": "{{$random.uuid}}",
+  "status": "pending",
+  "items": [
+    {
+      "id": "{{$random.uuid}}",
+      "product_id": "2e8c3bc7-7afd-47d1-85a9-efea8b8945fc",
+      "quantity": 2
+    },
+    {
+      "id": "{{$random.uuid}}",
+      "product_id": "4e8c3bc7-7afd-47d1-85a9-efea8b8945fc",
+      "quantity": 1
+    }
+  ],
+  "created_at": "{{$isoTimestamp}}",
+  "updated_at": "{{$isoTimestamp}}"
+}
+
+### Delete an order by ID
+DELETE {{baseUrl}}/orders/278878c0-53fd-42b3-9bad-92b81be32893
+Content-Type: application/json
